@@ -4,6 +4,17 @@ const Joi = require("joi");
 const express = require("express");
 const router = express.Router();
 
+//get request
+router.get("/", async (req, res) => {
+  try {
+    const todos = await Todo.find().sort({ date: -1 });
+    res.send(todos);
+  } catch (error) {
+    res.status(500).send("Error: " + error.message);
+
+  }
+});
+//post request
 router.post("/", async (req, res) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(200).required(),
@@ -21,16 +32,7 @@ router.post("/", async (req, res) => {
   res.send(todo);
 });
 
-router.get("/", async (req, res) => {
-  try {
-    const todos = await Todo.find().sort({ date: -1 });
-    res.send(todos);
-  } catch (error) {
-    res.status(500).send("Error: " + error.message);
-
-  }
-});
-
+//delete request
 router.delete("/:id", async (req, res) => {
   const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
   res.send(deletedTodo);
