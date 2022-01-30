@@ -21,6 +21,21 @@ router.post("/", async (req, res) => {
   res.send(todo);
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const todos = await Todo.find().sort({ date: -1 });
+    res.send(todos);
+  } catch (error) {
+    res.status(500).send("Error: " + error.message);
+
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
+  res.send(deletedTodo);
+});
+
 
 
 
