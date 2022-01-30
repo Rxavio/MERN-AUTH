@@ -73,7 +73,7 @@ router.put("/:id",async (req, res) => {
   res.send(updatedTodo);
 });
 
-
+//patch isComplete
 router.patch("/:id", async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
@@ -89,8 +89,4 @@ router.patch("/:id", async (req, res) => {
   );
   res.send(updatedTodo);
 });
-
-
-
-
 module.exports = router;
