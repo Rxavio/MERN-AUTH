@@ -34,7 +34,12 @@ router.post("/", async (req, res) => {
 
 //delete request
 router.delete("/:id", async (req, res) => {
+  const todo = await Todo.findById(req.params.id);
+
+  if (!todo) return res.status(404).send("Todo not found...");
+
   const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
+
   res.send(deletedTodo);
 });
 
