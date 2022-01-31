@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const todos = require("./routes/todos");
 const signUp = require("./routes/signUp");
+const signIn = require("./routes/signIn");
 
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use("/api/todos", todos);
 app.use("/api/signup", signUp);
+app.use("/api/signin", signIn);
 
 app.get("/", (req, res) => {
   res.send("welcome to the todos api...");
@@ -34,5 +36,3 @@ mongoose
   })
   .then(() => console.log("MongoDB connected..."))
   .catch((error) => console.error("MongoDB connection failed:", error.message));
-
-
