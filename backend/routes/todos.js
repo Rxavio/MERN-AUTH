@@ -15,7 +15,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 //post request
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(200).required(),
     author: Joi.string().min(3),
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 });
 
 //delete request
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
   if (!todo) return res.status(404).send("Todo not found...");
@@ -44,7 +44,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 //update request
-router.put("/:id",async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
 
   const schema = Joi.object({
     name: Joi.string().min(3).max(200).required(),
@@ -74,7 +74,7 @@ router.put("/:id",async (req, res) => {
 });
 
 //patch isComplete
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth, async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
   if (!todo) return res.status(404).send("Todo not found...");
