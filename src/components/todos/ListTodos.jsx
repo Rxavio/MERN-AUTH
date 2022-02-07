@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-
-
+import Todo from "./Todo";
 
 const useStyles = makeStyles({
   todosStyle: {
@@ -16,15 +15,13 @@ const useStyles = makeStyles({
 const ListTodos = () => {
   const classes = useStyles();
  
-
   return (
     <>
       <div className={classes.todosStyle}>
         <Typography variant="h5">
-         
+        <h3> List todos</h3> 
         </Typography> 
-         
-      <h3> List todos</h3> 
+        <Todo /> 
       </div>
     </>
   );
