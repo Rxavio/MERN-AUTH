@@ -1,4 +1,7 @@
-import React from 'react';
+import React,{ useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addTodo } from '../../store/actions/todoActions';
 
 import { TextField, Button } from '@material-ui/core';
 import { Send } from '@material-ui/icons';
@@ -20,17 +23,39 @@ const useStyles = makeStyles({
 
 const AddTodo = () => {
     const classes = useStyles();
+    const dispatch = useDispatch()
+
+    const [todo, setTodo]=useState({
+    name:"",
+    isComplete:false
+
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(todo)
+
+        dispatch(addTodo(todo))
+
+        setTodo({
+            name:"",
+            isComplete:false
+        })
+
+       
+    }
 
     return ( 
         <>
-            <form noValidate autoComplete="off" className={classes.formStyle} onSubmit = "">
+            <form noValidate autoComplete="off" className={classes.formStyle} onSubmit = { handleSubmit }>
                 <TextField
                     id="enter-todo"
                     label="EnterToDo"
                     variant="outlined"
                     autoFocus
                     fullWidth
-                    value = ""
+                    value = {todo.name}
+                    onChange = {(e) => setTodo({...todo, name: e.target.value, date: new Date()})}
                    
                 />
                 <Button variant="contained" color="primary" className = {classes.submitButton} type="submit">

@@ -15,7 +15,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 //post request
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(200).required(),
     author: Joi.string().min(3),
