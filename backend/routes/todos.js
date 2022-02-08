@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 //get request
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const todos = await Todo.find().sort({ date: -1 });
     res.send(todos);
