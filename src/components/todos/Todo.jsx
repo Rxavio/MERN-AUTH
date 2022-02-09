@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, ButtonGroup, Button } from "@material-ui/core";
 import { Create, Delete, CheckCircle } from "@material-ui/icons";
+import moment from "moment";
 
 
 const useStyles = makeStyles({
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Todo = () => {
+const Todo = ({ todo }) => {
   const classes = useStyles();
 
   return (
@@ -32,20 +33,20 @@ const Todo = () => {
       <div className={classes.todoStyle}>
         <div>
          
+            {todo.isComplete ? (
             <Typography variant="subtitle1" className={classes.checked}>
-             Todo one
+              {todo.name}
             </Typography>
-   
-            <Typography variant="subtitle1">
-              Todo one
-            </Typography>
+            ) : (
+            <Typography variant="subtitle1">{todo.name}</Typography>
+            )}
 
           <Typography variant="body2" className={classes.moreStyle}>
             Author: Xavio
           </Typography>
 
           <Typography variant="body2" className={classes.moreStyle}>
-            Added: 07/02/2022 13:35
+             Added: {moment(todo.date).fromNow()}
           </Typography>
 
         </div>

@@ -40,7 +40,10 @@ const ListTodos = () => {
           {todos &&
           todos.map((todo) => {
             return (
-              <Todo />
+              <Todo
+              todo={todo}
+              key={todo._id}
+              />
             );
           })}
       </div>
