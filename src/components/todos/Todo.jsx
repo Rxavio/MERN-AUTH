@@ -57,9 +57,17 @@ const Todo = ({ todo }) => {
               size="small"
               aria-label="outlined primary button group"
               >
-              <Button>
+              {/* <Button>
                   <CheckCircle color="action" />
-              </Button>
+              </Button> */}
+
+                <Button>
+                {todo.isComplete ? (
+                  <CheckCircle className={classes.isComplete} />
+                ) : (
+                  <CheckCircle color="action" />
+                )}
+                </Button>
 
               <Button>
                 <Create color="primary" />
