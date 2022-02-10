@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ListTodos = () => {
+const ListTodos = ({ setTodo }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 //  const state=useSelector((state) => state)
@@ -43,6 +43,7 @@ const ListTodos = () => {
               <Todo
               todo={todo}
               key={todo._id}
+              setTodo={setTodo}
               />
             );
           })}

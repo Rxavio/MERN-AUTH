@@ -1,11 +1,11 @@
 import axios from "axios";
 import { url } from "../../api";
 
-export const addTodo = (todo) => {
+export const addTodo = (newTodo) => {
   return (dispatch, getState) => {
 
     axios
-      .post(`${url}/todos`, todo)
+      .post(`${url}/todos`, newTodo)
       .then((todo) => {
         dispatch({
           type: "ADD_TODO",
@@ -34,6 +34,24 @@ export const getTodos = () => {
         });
     };
   };
+
+
+  export const updateTodo = (updatedTodo, id) => {
+    return (dispatch) => {
+      axios
+        .put(`${url}/todos/${id}`, updatedTodo)
+        .then((todo) => {
+          dispatch({
+            type: "UPDATE_TODO",
+            todo,
+          });
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    };
+  };
+  
 
 
 

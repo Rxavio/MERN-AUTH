@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 });
 
 //delete request
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
   if (!todo) return res.status(404).send("Todo not found...");
@@ -44,7 +44,7 @@ router.delete("/:id", auth, async (req, res) => {
 });
 
 //update request
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", async (req, res) => {
 
   const schema = Joi.object({
     name: Joi.string().min(3).max(200).required(),
@@ -74,7 +74,7 @@ router.put("/:id", auth, async (req, res) => {
 });
 
 //patch isComplete
-router.patch("/:id", auth, async (req, res) => {
+router.patch("/:id", async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
   if (!todo) return res.status(404).send("Todo not found...");
