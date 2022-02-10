@@ -74,7 +74,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //patch isComplete
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth, async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
   if (!todo) return res.status(404).send("Todo not found...");
