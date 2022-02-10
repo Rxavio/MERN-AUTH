@@ -1,9 +1,10 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, ButtonGroup, Button } from "@material-ui/core";
 import { Create, Delete, CheckCircle } from "@material-ui/icons";
 import moment from "moment";
-
+import { checkTodo } from "../../store/actions/todoActions";
 
 const useStyles = makeStyles({
   todoStyle: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
 
 const Todo = ({ todo, setTodo }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const handleOnUpdateClick = () => {
     setTodo(todo) 
@@ -35,6 +37,10 @@ const Todo = ({ todo, setTodo }) => {
         left: 0,
         behavior: 'smooth'
       });
+  };
+
+  const handleCheck = (id) => {
+    dispatch(checkTodo(id));
   };
 
   return (
@@ -70,7 +76,7 @@ const Todo = ({ todo, setTodo }) => {
                   <CheckCircle color="action" />
               </Button> */}
 
-                <Button>
+               <Button onClick={() => handleCheck(todo._id)}>
                 {todo.isComplete ? (
                   <CheckCircle className={classes.isComplete} />
                 ) : (
@@ -82,7 +88,7 @@ const Todo = ({ todo, setTodo }) => {
                 <Create color="primary" />
               </Button> */}
 
-            <Button onClick={() => handleOnUpdateClick()}>
+              <Button onClick={() => handleOnUpdateClick()}>
                 <Create color="primary" />
               </Button>
 

@@ -59,6 +59,26 @@ export const getTodos = () => {
         });
     };
   };
+
+
+  export const checkTodo = (id) => {
+    return (dispatch) => {
+      axios
+        .patch(`${url}/todos/${id}`, {})
+        .then((todo) => {
+          dispatch({
+            type: "CHECK_TODO",
+            todo,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error(error.response?.data, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        });
+    };
+  };
   
 
 
