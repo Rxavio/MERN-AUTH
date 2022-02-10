@@ -1,8 +1,12 @@
+import { toast } from "react-toastify";
 const todoReducer = (state=[], action) => {
     // return state
      switch (action.type) {
     case "ADD_TODO":
-       console.log(action)
+      toast.success("A todo was added...", {
+         position: toast.POSITION.BOTTOM_RIGHT,
+       });
+      //  console.log(action)
        return [action.todo.data, ...state]; 
     case "GET_TODOS":
        return action.todos.data;    
