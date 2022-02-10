@@ -11,6 +11,9 @@ const todoReducer = (state=[], action) => {
     case "GET_TODOS":
        return action.todos.data;    
     case "UPDATE_TODO":
+      toast.success("A todo was updated...", {
+         position: toast.POSITION.BOTTOM_RIGHT,
+       });
       return state.map((todo) => 
          todo._id === action.todo.data._id ? action.todo.data : todo
       )
