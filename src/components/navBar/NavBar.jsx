@@ -1,8 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "../../store/actions/authActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,8 +24,15 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const state = useSelector((state) => state);
   console.log(state);
+
+  const handleSignOut = () => {
+    dispatch(signOut());
+    navigate("/signin");
+  };
 
   return (
     <>
@@ -42,11 +50,12 @@ const NavBar = () => {
                 <Typography variant="subtitle2"className={classes.title}>
                   Logged in as xavio
                 </Typography>
-                <Button
+                
+                  <Button
                   edge="end"
                   color="inherit"
                   className={classes.authButton}
-                  
+                  onClick={() => handleSignOut()}
                 >
                   <Link className={classes.linkStyle} to="/">
                     SignOut

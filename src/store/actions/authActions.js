@@ -37,7 +37,7 @@ export const loadUser = () => {
     };
   };
 
-  
+
   export const signIn = (email, password) => {
     return (dispatch) => {
       axios
@@ -59,6 +59,15 @@ export const loadUser = () => {
         });
     };
   };  
+  
+  export const signOut = () => {
+    return (dispatch) => {     
+      dispatch({
+        type: "SIGN_OUT",
+      });
+  
+    };
+  };
   
 
 
