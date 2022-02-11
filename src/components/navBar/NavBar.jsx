@@ -1,6 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
   const classes = useStyles();
+  const state = useSelector((state) => state);
+  console.log(state);
 
   return (
     <>
