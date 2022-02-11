@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, TextField, Button } from "@material-ui/core";
-
+// import { Redirect } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 import { signUp } from "../../store/actions/authActions";
 
 const useStyles = makeStyles({
@@ -20,19 +21,20 @@ const useStyles = makeStyles({
 const SignUp = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const state=useSelector(state=>state)
-  console.log(state)
+  const auth = useSelector((state) => state.auth);
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
   });
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signUp(user));
     setUser({ name: "", email: "", password: "" });
   };
+
+  // if (auth._id) return <Redirect to="/" />;
+  if (auth._id) return <Navigate to="/" />;
 
   return (
     <>
