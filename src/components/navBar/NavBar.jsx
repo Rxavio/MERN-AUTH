@@ -28,6 +28,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   console.log(state);
+  const user = useSelector((state) => state.auth);
 
   const handleSignOut = () => {
     dispatch(signOut());
@@ -45,12 +46,13 @@ const NavBar = () => {
                 toDoApp;
               </Link>
             </Typography>
+            {user._id ? (
            
               <>
                 <Typography variant="subtitle2"className={classes.title}>
-                  Logged in as xavio
+                  Logged in as {user.name}
                 </Typography>
-                
+
                   <Button
                   edge="end"
                   color="inherit"
@@ -62,7 +64,7 @@ const NavBar = () => {
                   </Link>
                 </Button>
               </>
-         
+          ) : (
               <>
                 <Button
                   edge="end"
@@ -85,7 +87,7 @@ const NavBar = () => {
                 </Button>
 
               </>
-          
+           )}
           </Toolbar>
         </AppBar>
       </div>
